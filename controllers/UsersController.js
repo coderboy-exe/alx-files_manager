@@ -42,7 +42,7 @@ class UsersController {
     const user = await users.findOne({ _id: ObjectId(userId) });
 
     if (!user) {
-      res.status(401).json({ error: 'Unauthorrized' });
+      res.status(401).json({ error: 'Unauthorized' });
     } else {
       res.status(200).send({ id: userId, email: user.email });
     }
