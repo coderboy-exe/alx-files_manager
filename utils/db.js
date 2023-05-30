@@ -1,6 +1,5 @@
 import { MongoClient } from 'mongodb';
 
-
 const DB_HOST = process.env.DB_HOST || 'localhost';
 const DB_PORT = process.env.DB_PORT || 27017;
 const DATABASE = process.env.DB_DATABASE || 'files_manager';
@@ -12,10 +11,9 @@ class DBClient {
 
     this.client.connect()
       .then(() => {
-        console.log('Connected to MongoDB database'),
-        this.db = this.client.db(`${DATABASE}`)
+        this.db = this.client.db(`${DATABASE}`);
       })
-      .catch((err) => {console.log(err)})
+      .catch((err) => { console.log(err); });
   }
 
   isAlive() {
@@ -24,15 +22,14 @@ class DBClient {
 
   async nbUsers() {
     const docs = await this.db.collection('users').countDocuments();
-    return docs
+    return docs;
   }
 
   async nbFiles() {
     const files = await this.db.collection('files').countDocuments();
-    return files
+    return files;
   }
 }
-
 
 const dbClient = new DBClient();
 
