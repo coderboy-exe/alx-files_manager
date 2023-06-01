@@ -37,7 +37,7 @@ class UsersController {
   static async getMe(req, res) {
     const xToken = req.headers['x-token'];
     const key = `auth_${xToken}`;
-    const userId = await redisClient.get(key)
+    const userId = await redisClient.get(key);
     const users = await dbClient.db.collection('users');
     const user = await users.findOne({ _id: ObjectId(userId) });
 
@@ -47,7 +47,6 @@ class UsersController {
       res.status(200).send({ id: userId, email: user.email });
     }
   }
-
 }
 
 export default UsersController;
